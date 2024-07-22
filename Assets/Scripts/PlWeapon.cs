@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlWeapon : MonoBehaviour
+public class PlWeapon : MonoBehaviour, IPLWeapon
 {
-    // Start is called before the first frame update
-    void Start()
+    public IElement Element { get; private set; }
+    public float Damage { get; private set; }
+    public IPLWeapon.TypeDamage WeaponTypeDamage { get; private set; }
+
+    public void ElementCange(string name)
     {
-        
+        Element.Name = name;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Fire(Enemy enemy)
     {
         
     }
