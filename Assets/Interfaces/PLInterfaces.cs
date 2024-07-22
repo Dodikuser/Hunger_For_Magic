@@ -4,18 +4,18 @@ using UnityEngine;
 
 public interface IPlayer
 {  
-    public IPLWeapon Weapon { get; set; }
+    //public IPLWeapon Weapon { get; set; }
 
     public void Attack();
-    public void TakeDamage();
+    public void TakeDamage(float damage);
 }
 public interface IPLWeapon
 {
     public enum TypeDamage
     {
-       Ñutting,
+       Ð¡utting,
        Stabbing,
-       Ñrushing
+       Ð¡rushing
     }
 
     public IElement Element { get; set; }

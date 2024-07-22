@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPlayer
 {
-    // Start is called before the first frame update
-    void Start()
+    public float HP { get; private set; }
+    public IPLWeapon Weapon { get; private set; }
+
+    public void Attack()
     {
-        
+        Weapon.Fire();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(float damage)
     {
-        
+       
     }
 }
