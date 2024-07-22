@@ -1,19 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IPlayer
+public class Player : MonoBehaviour, IDamageable, IDealDamage
 {
-    public float HP { get; private set; }
-    public IPLWeapon Weapon { get; private set; }
+    public int maxHealth = 100;
+    private int currentHealth;
 
-    public void Attack()
+    void Start()
     {
-        Weapon.Fire();
+        currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    // Реалізація IDamageable
+    public void TakeDamage(int damageAmount)
     {
-       
+        currentHealth -= damageAmount;
+        Debug.Log("Player took damage: " + damageAmount + ", Current Health: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    // Реалізація IDealDamage
+    public void DealDamage(IDamageable target, int damageAmount)
+    {
+        target.TakeDamage(damageAmount);
+        Debug.Log("Player dealt damage: " + damageAmount);
+    }
+
+    private void Die()
+    {
+        Debug.Log("Player has died.");
+        // Додайте логіку для смерті гравця (наприклад, відновлення, перезапуск гри і т.д.)
     }
 }
