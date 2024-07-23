@@ -2,19 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlWeapon : MonoBehaviour, IPLWeapon
+public class PlWeapon : MonoBehaviour, IDealDamage, ICangeElement
 {
-    public IElement Element { get; private set; }
-    public float Damage { get; private set; }
-    public IPLWeapon.TypeDamage WeaponTypeDamage { get; private set; }
+    private Element Element { get; set;}
+    private float MainDamage { get; set; }
 
-    public void ElementCange(string name)
+    public void DealDamage(Entity entity)
     {
-        Element.Name = name;
+        Part part = entity as Part;
+        if (part != null) return;
+
+        float damage;
+        if (Element.Type != Element.TypesElements.None)
+             damage = MainDamage * 0;  
+        else damage = MainDamage;
+
+        part.TakeDamage(damage);
     }
 
-    public void Fire(Enemy enemy)
+    public void ResetElement()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public void ChangeElement()
+    {
+        throw new System.NotImplementedException();
     }
 }

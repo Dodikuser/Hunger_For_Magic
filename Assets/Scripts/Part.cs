@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Part : MonoBehaviour
+public class Part : Entity, ITakeDamage
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Element Element { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(float damage)
     {
-        
+        Hp -= damage;
     }
 }

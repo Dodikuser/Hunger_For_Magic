@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour, ITakeDamage
 {
     public int maxHealth = 50;
-    private int currentHealth;
+    private float currentHealth;
 
     void Start()
     {
@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     // Πεΰλ³ηΰφ³ÿ IDamageable
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
         Debug.Log(name + " took damage: " + damageAmount + ", Current Health: " + currentHealth);

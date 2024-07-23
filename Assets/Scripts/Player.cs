@@ -1,37 +1,35 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable, IDealDamage
+public class Player : Entity, ICombatable, IChanger, IInventory
 {
-    public int maxHealth = 100;
-    private int currentHealth;
-
-    void Start()
+    public void DealDamage(Entity entity)
     {
-        currentHealth = maxHealth;
+        throw new System.NotImplementedException();
     }
 
-    // Реалізація IDamageable
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damage)
     {
-        currentHealth -= damageAmount;
-        Debug.Log("Player took damage: " + damageAmount + ", Current Health: " + currentHealth);
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        Hp -= damage;
     }
 
-    // Реалізація IDealDamage
-    public void DealDamage(IDamageable target, int damageAmount)
+    public void ChangeWeapon()
     {
-        target.TakeDamage(damageAmount);
-        Debug.Log("Player dealt damage: " + damageAmount);
+        throw new System.NotImplementedException();
     }
 
-    private void Die()
+    public void ChangeСharm()
     {
-        Debug.Log("Player has died.");
-        // Додайте логіку для смерті гравця (наприклад, відновлення, перезапуск гри і т.д.)
+        throw new System.NotImplementedException();
     }
+
+    public void AddElement()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveElement()
+    {
+        throw new System.NotImplementedException();
+    }
+    
 }

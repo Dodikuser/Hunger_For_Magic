@@ -14,8 +14,4 @@ public interface IPLWeapon
     public void ElementCange(string name);
     public void Fire(Enemy enemy);
 }
-public interface IElement
-{
-    public string Name { get; set; }
-    public Dictionary<IElement, int> ElementFactors { get; set; }
-}
+
