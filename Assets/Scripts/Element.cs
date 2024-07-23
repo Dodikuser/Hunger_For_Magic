@@ -1,18 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ElementContainer;
 
 public struct Element
 {
-    public enum TypesElements
-    {
-        None,
-        Fire,
-        Water,
-        Ground,
-        Air,
-    }
-
     public TypesElements Type;
     public Dictionary<TypesElements, float> DamageFactor;
 
@@ -21,4 +13,8 @@ public struct Element
         this.Type = type;
         this.DamageFactor = DamageFactors;
     }   
+    public float GiveFactor(TypesElements type)
+    {
+        return DamageFactor[type];
+    }
 }

@@ -13,8 +13,8 @@ public class PlWeapon : MonoBehaviour, IDealDamage, ICangeElement
         if (part != null) return;
 
         float damage;
-        if (Element.Type != Element.TypesElements.None)
-             damage = MainDamage * 0;  
+        if (Element.Type != ElementContainer.TypesElements.None)
+             damage = MainDamage * Element.GiveFactor(part.Element.Type);  
         else damage = MainDamage;
 
         part.TakeDamage(damage);
