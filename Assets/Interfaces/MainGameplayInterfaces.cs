@@ -19,13 +19,13 @@ public interface ICanDie
 }
 public interface IChanger
 {
-    public void Change—harm();
-    public void ChangeWeapon();
+    public void SetAmulet();
+    public void SetWeapon();
 }
 public interface IInventory
 {
-    public void AddElement();
-    public void RemoveElement();
+    public void AddElement(Element element, int count = 1);
+    public void RemoveElement(Element element);
 }
 public interface ICangeElement
 {
