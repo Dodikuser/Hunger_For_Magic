@@ -20,6 +20,7 @@ public static class ElementContainer
 
     static ElementContainer()
     {
+        Element None = new Element(TypesElements.None, new Dictionary<TypesElements, float>());
         Element Fire = new Element(TypesElements.Fire, new Dictionary<TypesElements, float>
         {
             { TypesElements.Fire, 1f },
@@ -50,6 +51,7 @@ public static class ElementContainer
         });
 
         Elements = new Dictionary<string, Element> {
+            {"None", None},
             {"Fire", Fire},
             {"Water", Water},
             {"Ground", Ground},

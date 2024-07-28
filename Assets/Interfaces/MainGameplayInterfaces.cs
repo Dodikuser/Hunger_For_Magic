@@ -13,6 +13,10 @@ public interface ITakeDamage
 public interface ICombatable: IDealDamage, ITakeDamage
 {
 }
+public interface ICanDie
+{
+    public void Die();
+}
 public interface IChanger
 {
     public void Change—harm();
@@ -26,5 +30,6 @@ public interface IInventory
 public interface ICangeElement
 {
     public void ResetElement();
-    public void ChangeElement();
+    public void SetElement(string name);
 }
+

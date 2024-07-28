@@ -2,14 +2,24 @@ using UnityEngine;
 
 public class Player : Entity, ICombatable, IChanger, IInventory
 {
+    public Enemy SelectedEnemy;
+    public Part SelectedPart;
+    public PlWeapon PLWeapon;
+
+    private void Awake()
+    {
+        CurrentHealth = MaxHealth;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            DealDamage(SelectedPart);
+        }
+    }
     public void DealDamage(Entity entity)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void TakeDamage(float damage)
-    {
-        Hp -= damage;
+        PLWeapon.DealDamage(entity);
     }
 
     public void ChangeWeapon()
@@ -31,5 +41,10 @@ public class Player : Entity, ICombatable, IChanger, IInventory
     {
         throw new System.NotImplementedException();
     }
-    
+
+    public void SetPart(Part patr)
+    {
+        SelectedPart = patr;
+    }
+
 }

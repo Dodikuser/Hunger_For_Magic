@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlWeapon : MonoBehaviour, IDealDamage, ICangeElement
+public class Part : Entity, ITakeDamage, ICanDie, ICangeElement
 {
-    [SerializeField] private Element Element;
-    [SerializeField] private float MainDamage;
+    public Element Element { get; private set; }
+    [SerializeField] protected Enemy ParentEnemy;
 
     public string StartElement;
 
     private void Awake()
-    {  
+    {
+        ResetHealth();
         SetElement(StartElement);
     }
 
-    public void DealDamage(Entity entity)
+    public override string ToString()
     {
-        Part part = entity as Part;
-        if (part == null) return;
+        return "DefaultPart";
+    }
 
-        float damage;
-        if (Element.Type != ElementContainer.TypesElements.None)
-             damage = MainDamage * Element.GiveFactor(part.Element.Type);  
-        else damage = MainDamage;
-
-        part.TakeDamage(damage);
+    public virtual void Die()
+    {
+        Destroy(gameObject);
+    }
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        if (CurrentHealth <= 0) Die();
     }
 
     public void ResetElement()
@@ -38,10 +41,11 @@ public class PlWeapon : MonoBehaviour, IDealDamage, ICangeElement
         {
             Element = ElementContainer.Elements[name];
         }
-        catch
-        {
+        catch 
+        { 
             Element = ElementContainer.Elements["None"];
             Debug.LogWarning($"The {ToString()} has no element");
         }
     }
+
 }

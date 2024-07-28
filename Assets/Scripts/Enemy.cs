@@ -2,31 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, ITakeDamage
+public class Enemy : Entity, ITakeDamage, ICanDie
 {
-    public int maxHealth = 50;
-    private float currentHealth;
+    [SerializeField] protected List<Part> PartList = new List<Part>();
+    [SerializeField] protected Dictionary<string, Part> Parts = new Dictionary<string, Part>();
 
-    void Start()
+    private void Awake()
     {
-        currentHealth = maxHealth;
-    }
+        CurrentHealth = MaxHealth;
 
-    // Πεΰλ³ηΰφ³ÿ IDamageable
-    public void TakeDamage(float damageAmount)
-    {
-        currentHealth -= damageAmount;
-        Debug.Log(name + " took damage: " + damageAmount + ", Current Health: " + currentHealth);
-
-        if (currentHealth <= 0)
-        {
-            Die();
+        for (int i = 0; i < PartList.Count; i++)
+        {        
+            Parts.Add(PartList[i].ToString(), PartList[i]);
         }
     }
-
-    private void Die()
+    void Start()
     {
-        Debug.Log(name + " has died.");
+    }
+
+    public virtual void Die()
+    {
         Destroy(gameObject);
     }
 }
