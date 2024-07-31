@@ -12,7 +12,10 @@ public class Part : Entity, ITakeDamage, ICanDie, ICangeElement
     private void Awake()
     {
         ResetHealth();
-        SetElement(StartElement);
+    }
+    private void Start()
+    {
+        SetElement(StartElement);       
     }
 
     public override string ToString()
@@ -22,6 +25,7 @@ public class Part : Entity, ITakeDamage, ICanDie, ICangeElement
 
     public virtual void Die()
     {
+        ParentEnemy.RemovePart(ToString());
         Destroy(gameObject);
     }
     public override void TakeDamage(float damage)

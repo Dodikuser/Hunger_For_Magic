@@ -36,4 +36,8 @@ public class Enemy : Entity, ITakeDamage, ICanDie
         Debug.LogWarning("Part is null");
         return null;
     }
+    public void RemovePart(string name)
+    {
+        Parts.Remove(name);
+    }
 }

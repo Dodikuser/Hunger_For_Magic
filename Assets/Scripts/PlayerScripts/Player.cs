@@ -4,12 +4,17 @@ public class Player : Entity, ICombatable, IChanger
 {
     public Enemy SelectedEnemy;
     public Part SelectedPart;
+    public string SelectedPartName;
     public PlWeapon PLWeapon;
     public Inventory Inventory = new Inventory();
 
     private void Awake()
     {
         CurrentHealth = MaxHealth;
+        
+    }
+    private void Start()
+    {
         Inventory.AddElement(ElementContainer.GiveElement("Fire"));
         Inventory.AddElement(ElementContainer.GiveElement("Water"));
         Inventory.AddElement(ElementContainer.GiveElement("Ground"));
@@ -26,7 +31,9 @@ public class Player : Entity, ICombatable, IChanger
 
     public void DealDamage(Entity entity)
     {
-        PLWeapon.DealDamage(entity);
+       // if (SelectedEnemy != null && entity == null)
+        SelectedPart = SelectedEnemy.GivePart(SelectedPartName);
+        PLWeapon.DealDamage(SelectedPart);
     }
 
     public void SetWeapon()
@@ -39,11 +46,9 @@ public class Player : Entity, ICombatable, IChanger
         throw new System.NotImplementedException();
     }   
 
-    public void SelectPart(string name)
+    public void SelectPartName(string name)
     {
-        if (SelectedEnemy == null) return;
-
-        SelectedPart = SelectedEnemy.GivePart(name);
+        SelectedPartName = name;
     }
 
 }

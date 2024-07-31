@@ -11,11 +11,15 @@ public class PlWeapon : MonoBehaviour, IDealDamage, ICangeElement
 
     private void Awake()
     {  
-        SetElement(StartElement);
+    }
+    private void Start()
+    {
+        SetElement(StartElement);   
     }
 
     public void DealDamage(Entity entity)
     {
+
         Part part = entity as Part;
         if (part == null) return;
 
@@ -25,6 +29,8 @@ public class PlWeapon : MonoBehaviour, IDealDamage, ICangeElement
         else damage = MainDamage;
 
         part.TakeDamage(damage);
+
+        ResetElement();
     }
 
     public void ResetElement()
